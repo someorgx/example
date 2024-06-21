@@ -25,5 +25,8 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: Go Build
         run: |
+          eval `ssh-agent -s`
+          ssh-add - <<< "${{ THURSDAY_READ_ONLY_DEPLOY_KEY }}"
+          git config --global url."git@github.com:"".insteadOf" "http://github.com/"
           go build
           ./example
