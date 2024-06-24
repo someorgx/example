@@ -26,9 +26,9 @@ jobs:
       - name: Go Build
         run: |
           eval `ssh-agent -s`
-          ssh-add - <<< "${{ secrets.THURSDAY_READ_ONLY_DEPLOY_KEY }}"
+          ssh-add -h - <<< "${{ secrets.THURSDAY_READ_ONLY_DEPLOY_KEY }}"
           ssh-add - <<< "${{ secrets.FOOBAR_READ_ONLY_DEPLOY_KEY }}"
-          git config --global --add url."git@github.com:someorgx/thursday".insteadOf "https://github.com/thursday"
-          git config --global --add url."git@github.com:someorgx/foobar".insteadOf "https://github.com/foobar"
+          git config --global --add url."git@github.com:someorgx/thursday".insteadOf "https://github.com/someorgx/thursday"
+          git config --global --add url."git@github.com:someorgx/foobar".insteadOf "https://github.com/someorgx/foobar"
           go build
           ./example
